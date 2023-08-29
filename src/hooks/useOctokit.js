@@ -12,7 +12,7 @@ export default function useOctokit() {
         });
 
         const res = await octokit.request(
-          'GET /repos/{owner}/{repo}/issues', {
+          'GET /repos/{owner}/{repo}/issues?state=open&sort=comments', {
             owner: 'facebook',
             repo: 'react',
             headers: {
