@@ -1,6 +1,7 @@
 import { StyledIssuesList } from './IssuesList.styled';
 import useOctokit from '../hooks/useOctokit';
 import img from "../images/optimize.webp";
+import React from 'react';
 
 export interface Issue {
   id: number;
@@ -18,8 +19,8 @@ function IssuesList() {
     <>
       {
         code && code.map((issue: Issue, idx: number) => (
-          <>
-            <StyledIssuesList key={issue.id}>
+          <React.Fragment key={issue.id}>
+            <StyledIssuesList>
               <div className='list_item'>
                 <h2 className='list_title'>{issue.title}</h2>
                 <div className='list_info'>
@@ -35,7 +36,7 @@ function IssuesList() {
                 <img src={img} alt="원티드" />
               </StyledIssuesList>
             }
-          </>
+          </React.Fragment>
         ))
       }
     </>
