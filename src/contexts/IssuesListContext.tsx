@@ -13,12 +13,12 @@ export function useIssuesContext() {
 }
 
 export function IssuesProvider({ owner, repo, children }: any) {
-  const [code, setCode] = useState<Issue[]>([]);
+  const [list, setList] = useState<Issue[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<Error | null>(null);
 
   useEffect(() => {
-    async function fetchIssues() {
+    async function fetchIssuesList() {
       try {
         const octokit = new Octokit({
           auth: process.env.REACT_APP_OCTOKIT_TOKEN,
@@ -34,18 +34,18 @@ export function IssuesProvider({ owner, repo, children }: any) {
           }
         );
 
-        setCode(res.data);
+        setList(res.data);
         setIsLoading(false);
       } catch (err) {
         setError(err as Error);
         setIsLoading(false);
       }
     }
-    fetchIssues();
+    fetchIssuesList();
   }, []);
 
   const contextValue = {
-    issues: code,
+    issues: list,
   };
 
   return (
