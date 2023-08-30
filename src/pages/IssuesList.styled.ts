@@ -28,7 +28,14 @@ export const StyledIssuesList = styled.div`
       }
     }
   }
-  img {
-    margin: 0 auto;
+  .img_box {
+    width: 100%;
+    cursor: pointer;
+    img {
+      display: block;
+      margin: 0 auto;
+      padding: 1rem 0;
+    }
   }
+  
 `;

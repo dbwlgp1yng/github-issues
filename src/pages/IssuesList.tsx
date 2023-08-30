@@ -1,7 +1,8 @@
 import { StyledIssuesList } from './IssuesList.styled';
-import useOctokit from '../hooks/useOctokit';
 import img from "../images/optimize.webp";
 import React from 'react';
+import { useIssuesContext } from '../contexts/IssuesListContext';
+import { Link } from 'react-router-dom';
 
 export interface Issue {
   id: number;
@@ -13,12 +14,12 @@ export interface Issue {
   state: string;
 }
 function IssuesList() {
-  const { code }: any = useOctokit(); 
+  const { issues }: any = useIssuesContext();
 
   return (
     <>
       {
-        code && code.map((issue: Issue, idx: number) => (
+        issues && issues.map((issue: Issue, idx: number) => (
           <React.Fragment key={issue.id}>
             <StyledIssuesList>
               <div className='list_item'>
@@ -33,7 +34,9 @@ function IssuesList() {
             </StyledIssuesList>
             {idx % 4 === 3 && 
               <StyledIssuesList>
-                <img src={img} alt="원티드" />
+                <Link className='img_box' to='https://www.wanted.co.kr/'>
+                  <img src={img} alt="원티드" />
+                </Link>
               </StyledIssuesList>
             }
           </React.Fragment>
