@@ -10,9 +10,15 @@ export const StyledHeader = styled.header`
   font-weight: bold;
 
   div {
+    display: flex;
+    align-items: center;
     cursor: pointer;
-
-    .owner{
+    .github_icon {
+      width: 2.5rem;
+      height: 2.5rem;
+      margin-right: 1rem;
+    }
+    .owner {
       color: #666;
     }
   }

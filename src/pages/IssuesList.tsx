@@ -10,7 +10,7 @@ export default function IssuesList() {
   const { issues }: any = useIssuesContext();
   const navigate = useNavigate();
 
-  const pathToDetail = (number: number) => {
+  const navigateToDetail = (number: number) => {
     console.log(number);
     navigate(`/issues/${number}`);
   }
@@ -21,7 +21,7 @@ export default function IssuesList() {
         issues && issues.map((issue: Issue, idx: number) => (
           <React.Fragment key={issue.id}>
             <StyledIssuesList>
-              <div className='list_item' onClick={() => pathToDetail(issue.number)}>
+              <div className='list_item' onClick={() => navigateToDetail(issue.number)}>
                 <h2 className='list_title'>{issue.title}</h2>
                 <div className='list_info'>
                   <span>#{issue.number}</span>
