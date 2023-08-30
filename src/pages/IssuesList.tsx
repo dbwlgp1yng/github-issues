@@ -4,6 +4,7 @@ import React from 'react';
 import { useIssuesContext } from '../contexts/IssuesContext';
 import { Link, useNavigate } from 'react-router-dom';
 import { Issue } from '../IssuesType';
+import { BiCommentDetail } from 'react-icons/bi';
 
 export default function IssuesList() {
   const { issues }: any = useIssuesContext();
@@ -29,7 +30,10 @@ export default function IssuesList() {
                   <span>by {issue.user.login}</span>
                 </div>
               </div>
-              <p>{issue.comments}</p>
+              <div className='comment'>
+                <BiCommentDetail className='comment_icon' />
+                <span>{issue.comments}</span>
+              </div>
             </StyledIssuesList>
             {idx % 4 === 3 && 
               <StyledIssuesList>

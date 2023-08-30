@@ -36,11 +36,20 @@ export const StyledIssuesList = styled.li`
   .img_box {
     width: 100%;
     cursor: pointer;
+
     img {
       display: block;
       margin: 0 auto;
       padding: 1rem 0;
     }
   }
-  
+  .comment {
+    display: flex;
+    gap: 0.5rem;
+
+    .comment_icon{
+      width: 1.25rem;
+      height: 1.25rem;
+    }
+  }
 `;

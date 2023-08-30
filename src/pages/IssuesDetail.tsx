@@ -21,7 +21,7 @@ export default function IssuesDetail( ){
   ![User Avatar](${issue.user.avatar_url})
   ${issue.user.login}
   ${issue.formattedDate}
-  ${issue.comments}
+  ${issue.comments} comments
 
   ${issue.body}
   `;

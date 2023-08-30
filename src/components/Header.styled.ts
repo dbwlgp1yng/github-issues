@@ -6,10 +6,8 @@ export const StyledHeader = styled.header`
   justify-content: center;
   padding: 1.5rem 0;
   margin-bottom: 1rem;
-  font-size: 2rem;
+  font-size: 1.5rem;
   font-weight: bold;
-  border-bottom: 1px solid #333;
-  background-color: #ededed;
 
   div {
     cursor: pointer;
