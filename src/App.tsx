@@ -1,5 +1,5 @@
 import Header from "./components/Header";
-import { IssuesProvider } from './contexts/IssuesListContext';
+import { IssuesProvider } from './contexts/IssuesContext';
 import { Route, Routes } from 'react-router-dom';
 import IssuesList from './pages/IssuesList';
 import IssuesDetail from './pages/IssuesDetail';

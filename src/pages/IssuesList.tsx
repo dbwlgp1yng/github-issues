@@ -1,23 +1,11 @@
 import { StyledIssuesList } from './IssuesList.styled';
 import img from "../images/optimize.webp";
 import React from 'react';
-import { useIssuesContext } from '../contexts/IssuesListContext';
+import { useIssuesContext } from '../contexts/IssuesContext';
 import { Link, useNavigate } from 'react-router-dom';
+import { Issue } from '../IssuesType';
 
-export interface Issue {
-  id: number;
-  number: number;
-  title: string;
-  user: { 
-    login: string,
-    avatar_url: string
-  };
-  created_at: string;
-  comments: number;
-  state: string;
-  body: string;
-}
-function IssuesList() {
+export default function IssuesList() {
   const { issues }: any = useIssuesContext();
   const navigate = useNavigate();
 
@@ -32,15 +20,16 @@ function IssuesList() {
         issues && issues.map((issue: Issue, idx: number) => (
           <React.Fragment key={issue.id}>
             <StyledIssuesList>
-              <li className='list_item' onClick={() => pathToDetail(issue.number)}>
+              <div className='list_item' onClick={() => pathToDetail(issue.number)}>
                 <h2 className='list_title'>{issue.title}</h2>
                 <div className='list_info'>
                   <span>#{issue.number}</span>
                   <span>{issue.state}</span>
+                  <span>{issue.formattedDate}</span>
                   <span>by {issue.user.login}</span>
-                  <p>{issue.created_at}</p>
                 </div>
-              </li><p>{issue.comments}</p>
+              </div>
+              <p>{issue.comments}</p>
             </StyledIssuesList>
             {idx % 4 === 3 && 
               <StyledIssuesList>
@@ -55,5 +44,3 @@ function IssuesList() {
     </ul>
   );
 }
-
-export default IssuesList;

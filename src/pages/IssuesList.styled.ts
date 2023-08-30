@@ -1,6 +1,6 @@
 import { styled } from 'styled-components';
 
-export const StyledIssuesList = styled.div`
+export const StyledIssuesList = styled.li`
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -18,6 +18,11 @@ export const StyledIssuesList = styled.div`
       font-size: 1.25rem;
       font-weight: bold;
       margin-bottom: 0.5rem;
+      cursor: pointer;
+
+      &:hover {
+        color: #019ce4;
+      }
     }
 
     .list_info {

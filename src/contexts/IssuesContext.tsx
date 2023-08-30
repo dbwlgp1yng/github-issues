@@ -1,6 +1,6 @@
 import { createContext, useContext, useState, useEffect } from 'react';
 import { Octokit } from "@octokit/rest";
-import { Issue } from '../pages/IssuesList';
+import { Issue } from '../IssuesType';
 
 type ContextType = {
   issues: Issue[];
@@ -44,8 +44,18 @@ export function IssuesProvider({ owner, repo, children }: any) {
     fetchIssuesList();
   }, []);
 
+  const formattedIssues = list.map((issue: Issue) => ({
+    ...issue,
+    formattedDate: new Date(issue.created_at)
+      .toLocaleDateString('en-US', {
+        year: 'numeric',
+        month: 'short',
+        day: 'numeric',
+    }),
+  }));
+  
   const contextValue = {
-    issues: list,
+    issues: formattedIssues,
   };
 
   return (
