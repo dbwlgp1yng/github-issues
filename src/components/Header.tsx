@@ -16,7 +16,7 @@ export default function Header({ owner, repo }: {
       <div onClick={navigateToHome}>
         <AiFillGithub className="github_icon" />
         <span className="owner">{owner} </span>
-        <span className="repo">/ {repo}</span>
+        <span className="repo">/{repo}</span>
       </div>
     </StyledHeader>
   );

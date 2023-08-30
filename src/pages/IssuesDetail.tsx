@@ -15,20 +15,27 @@ export default function IssuesDetail( ){
   }
 
   const markdownContent = `
-  ## ${issue.title}
-  ### #${issue.number}
-  
-  ![User Avatar](${issue.user.avatar_url})
-  ${issue.user.login}
-  ${issue.formattedDate}
-  ${issue.comments} comments
-
-  ${issue.body}
+    ${issue.body}
   `;
   
   return (
     <StyledIssuesDetail>
-      <ReactMarkdown>
+      <section>
+        <div className='detail_title'>
+          <h2>{issue.title}</h2>
+          <span>#{issue.number}</span>
+        </div>
+        <div className='detail_profile'>
+          <img
+            src={issue.user.avatar_url}
+            alt={issue.user.login}
+          />
+          <p>{issue.user.login}</p>
+          <p>{issue.formattedDate}</p>
+          <p>{issue.comments} comments</p>
+        </div>
+      </section>
+      <ReactMarkdown className='markdown_box'>
         {markdownContent}
       </ReactMarkdown>
     </StyledIssuesDetail>

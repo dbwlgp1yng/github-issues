@@ -15,9 +15,10 @@ export const StyledIssuesList = styled.li`
     padding: 1rem 0;
     
     .list_title {
+      padding: 0; 
+      margin: 0 0 0.5rem 0;
       font-size: 1.25rem;
       font-weight: bold;
-      margin-bottom: 0.5rem;
       cursor: pointer;
 
       &:hover {

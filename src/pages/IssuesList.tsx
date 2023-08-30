@@ -11,7 +11,6 @@ export default function IssuesList() {
   const navigate = useNavigate();
 
   const navigateToDetail = (number: number) => {
-    console.log(number);
     navigate(`/issues/${number}`);
   }
 
