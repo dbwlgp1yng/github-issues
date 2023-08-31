@@ -1,13 +1,13 @@
 import { StyledIssuesList } from './IssuesList.styled';
 import img from "../images/optimize.webp";
 import React from 'react';
-import { useIssuesContext } from '../contexts/IssuesContext';
 import { Link, useNavigate } from 'react-router-dom';
 import { Issue } from '../IssuesType';
 import { BiCommentDetail } from 'react-icons/bi';
+import { useFetchIssues } from '../hooks/useFetchIssues';
 
 export default function IssuesList() {
-  const { issues }: any = useIssuesContext();
+  const { issues }: any = useFetchIssues();
   const navigate = useNavigate();
 
   const navigateToDetail = (number: number) => {

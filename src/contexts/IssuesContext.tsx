@@ -12,8 +12,8 @@ export function useIssuesContext() {
   return useContext(IssuesContext);
 }
 
-export function IssuesProvider({ owner, repo, children }: any) {
-  const { issues, isLoading, error }: any = useFetchIssues(owner, repo);
+export function IssuesProvider({ children }: any) {
+  const { issues, isLoading, error }: any = useFetchIssues();
   const contextValue = {
     issues: issues, // useFetchIssues에서 가공한 데이터 그대로 사용
   };

@@ -18,7 +18,7 @@ function App() {
   const repo = 'react';
 
   return (
-    <IssuesProvider owner={owner} repo={repo}>
+    <IssuesProvider>
       <Header owner={owner} repo={repo}/>
       <IssuesRoutes />
     </IssuesProvider>

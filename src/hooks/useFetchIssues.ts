@@ -2,7 +2,7 @@ import { Octokit } from "@octokit/rest";
 import { useState, useEffect } from 'react';
 import { Issue } from '../IssuesType';
 
-export function useFetchIssues(owner: string, repo: string) {
+export function useFetchIssues() {
   const [list, setList] = useState<Issue[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<Error | null>(null);
@@ -16,8 +16,8 @@ export function useFetchIssues(owner: string, repo: string) {
 
         const res = await octokit.request(
           'GET /repos/{owner}/{repo}/issues?state=open&sort=comments', {
-            owner: owner,
-            repo: repo,
+            owner: 'facebook',
+            repo: 'react',
             headers: {
               'X-GitHub-Api-Version': '2022-11-28'
             }
@@ -32,7 +32,7 @@ export function useFetchIssues(owner: string, repo: string) {
       }
     }
     fetchIssuesList();
-  }, [owner, repo]);
+  }, []);
 
   const formattedIssues = list.map((issue: Issue) => ({
     ...issue,
