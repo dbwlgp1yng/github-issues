@@ -1,46 +1,22 @@
-# Getting Started with Create React App
+## 원티드 프리 온보딩 프론트엔드 - 2주차 과제 
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+### [배포 바로가기](https://wanted-pre-onboarding-12th-2.vercel.app/)
 
-## Available Scripts
+### 기능 구현
 
-In the project directory, you can run:
+1. 이슈 목록 화면
+- github API인 Octokit을 사용하여 이슈 목록을 불러옵니다.
+- 이슈 클릭시 해당 이슈번호('/issues/:id') 의 상세 페이지로 이동합니다.
+- issues 배열을 순회하면서, idx % 4 === 3 조건을 사용하여 4번째 이슈 아래에 광고 배너를 표시합니다. 
+- 인피니트 스크롤 기능은 아직 구현 중이라 완성하지 못했습니다.. (코드가 지저분한 상태)
 
-### `npm start`
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+2. 이슈 상세 화면
+- 현재 경로의 url 파라미터에서 id 값을 추출하여 이슈 목록의 해당 id와 일치하는 이슈를 조회합니다.
+- 이슈 컨텍스트로부터 이슈 목록을 가져와서 없는 경우, Error 화면을 렌더링합니다. 
+- 이슈의 본문 내용에 마크다운 라이브러리를 사용하였습니다.
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
 
-### `npm test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+3. 공통 헤더
+- 최상단 App 컴포넌트에서 공통 헤더를 사용하기 전에, 헤더에 표시할 정보를 정의합니다. 
+- 별도의 헤더 컴포넌트를 생성하여 전달받은 owner와 repo 값을 표시하고, 클릭 이벤트를 통해 홈페이지로 이동할 수 있도록 구현하였습니다.
