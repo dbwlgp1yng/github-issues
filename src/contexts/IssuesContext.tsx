@@ -1,6 +1,6 @@
 import { createContext, useContext, useState, useEffect } from 'react';
-import { Octokit } from "@octokit/rest";
 import { Issue } from '../IssuesType';
+import { useFetchIssues } from '../hooks/useFetchIssues';
 
 type ContextType = {
   issues: Issue[];
@@ -13,49 +13,9 @@ export function useIssuesContext() {
 }
 
 export function IssuesProvider({ owner, repo, children }: any) {
-  const [list, setList] = useState<Issue[]>([]);
-  const [isLoading, setIsLoading] = useState(true);
-  const [error, setError] = useState<Error | null>(null);
-
-  useEffect(() => {
-    async function fetchIssuesList() {
-      try {
-        const octokit = new Octokit({
-          auth: process.env.REACT_APP_OCTOKIT_TOKEN,
-        });
-
-        const res = await octokit.request(
-          'GET /repos/{owner}/{repo}/issues?state=open&sort=comments', {
-            owner: owner,
-            repo: repo,
-            headers: {
-              'X-GitHub-Api-Version': '2022-11-28'
-            }
-          }
-        );
-
-        setList(res.data);
-        setIsLoading(false);
-      } catch (err) {
-        setError(err as Error);
-        setIsLoading(false);
-      }
-    }
-    fetchIssuesList();
-  }, []);
-
-  const formattedIssues = list.map((issue: Issue) => ({
-    ...issue,
-    formattedDate: new Date(issue.created_at)
-      .toLocaleDateString('en-US', {
-        year: 'numeric',
-        month: 'short',
-        day: 'numeric',
-    }),
-  }));
-  
+  const { issues, isLoading, error }: any = useFetchIssues(owner, repo);
   const contextValue = {
-    issues: formattedIssues,
+    issues: issues, // useFetchIssues에서 가공한 데이터 그대로 사용
   };
 
   return (
