@@ -5,34 +5,39 @@ import { Issue } from '../IssuesType';
 export function useFetchIssues() {
   const [list, setList] = useState<Issue[]>([]);
   const [isLoading, setIsLoading] = useState(true);
+  const [isEnd, setIsEnd] = useState(false);
   const [error, setError] = useState<Error | null>(null);
+  const [page, setPage] = useState(1);
+
+  const fetchIssuesList = async () => {
+    try {
+      const octokit = new Octokit({
+        auth: process.env.REACT_APP_OCTOKIT_TOKEN,
+      });
+
+      const res = await octokit.request(
+        `GET /repos/{owner}/{repo}/issues?state=open&sort=comments&page=${page}`, {
+          owner: 'facebook',
+          repo: 'react',
+          headers: {
+            'X-GitHub-Api-Version': '2022-11-28'
+          }
+        }
+      );
+
+      setList(prevList => [...prevList, ...res.data]);
+    } catch (err) {
+      setError(err as Error);
+    } finally {
+      setIsLoading(false); 
+    }
+  };
 
   useEffect(() => {
-    async function fetchIssuesList() {
-      try {
-        const octokit = new Octokit({
-          auth: process.env.REACT_APP_OCTOKIT_TOKEN,
-        });
-
-        const res = await octokit.request(
-          'GET /repos/{owner}/{repo}/issues?state=open&sort=comments', {
-            owner: 'facebook',
-            repo: 'react',
-            headers: {
-              'X-GitHub-Api-Version': '2022-11-28'
-            }
-          }
-        );
-
-        setList(res.data);
-        setIsLoading(false);
-      } catch (err) {
-        setError(err as Error);
-        setIsLoading(false);
-      }
+    if (isLoading) {
+      fetchIssuesList();
     }
-    fetchIssuesList();
-  }, []);
+  }, [isLoading]);
 
   const formattedIssues = list.map((issue: Issue) => ({
     ...issue,
@@ -44,9 +49,18 @@ export function useFetchIssues() {
     }),
   }));
 
+  const fetchNextPage = async () => {
+    if (!isLoading) {
+      setIsLoading(true);
+      setPage(prevPage => prevPage + 1);
+    }
+  };
+
   return {
     issues: formattedIssues,
     isLoading,
-    error
+    isEnd,
+    error,
+    fetchNextPage,
   };
 }

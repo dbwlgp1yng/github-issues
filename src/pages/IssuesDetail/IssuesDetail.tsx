@@ -1,7 +1,7 @@
 import { useParams } from 'react-router-dom';
-import { useIssuesContext } from '../contexts/IssuesContext';
-import { Issue } from '../IssuesType';
-import Error from './Error';
+import { useIssuesContext } from '../../contexts/IssuesContext';
+import { Issue } from '../../IssuesType';
+import Error from '../ErrorPage/Error';
 import ReactMarkdown from 'react-markdown';
 import { StyledIssuesDetail } from './IssuesDetail.styled';
 

@@ -10,5 +10,5 @@ export interface Issue {
   comments: number;
   state: string;
   body: string;
-  formattedDate: string,
+  formattedDate: string;
 }

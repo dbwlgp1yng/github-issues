@@ -1,9 +1,9 @@
 import Header from "./components/Header";
 import { IssuesProvider } from './contexts/IssuesContext';
 import { Route, Routes } from 'react-router-dom';
-import IssuesList from './pages/IssuesList';
-import IssuesDetail from './pages/IssuesDetail';
-import Error from './pages/Error';
+import IssuesList from './pages/IssuesList/IssuesList';
+import IssuesDetail from './pages/IssuesDetail/IssuesDetail';
+import Error from './pages/ErrorPage/Error';
 
 const IssuesRoutes = () => (
   <Routes>
