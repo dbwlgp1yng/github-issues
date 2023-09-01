@@ -1,14 +1,57 @@
-## 원티드 프리 온보딩 프론트엔드 - 2주차 과제 
+<div align='center'>
+  <h1>원티드 프리온보딩 프론트엔드  2주차 과제</h1>
+</div>
 
-### [배포 바로가기](https://wanted-pre-onboarding-12th-2.vercel.app/)
+- 본 레포지토리는 프리온보딩 프론트엔드 2주차 과제입니다.
+- 특정 깃헙 레포지토리의 이슈 목록과 상세 내용을 확인하는 웹 사이트를 구축하였습니다.
 
-### 기능 구현
+  <br />
+
+### 📎 [배포 사이트](https://wanted-pre-onboarding-12th-2.vercel.app/)
+![2주차목록이미지](https://github.com/dbwlgp1yng/wanted-pre-onboarding-frontend/assets/126330595/d1c62b82-bfac-4a7c-b358-ddbd89f65cda)
+
+<br />
+
+### 🗓️ 프로젝트 기간
+#### 2023.8.29 ~ 2023.9.1
+
+<br />
+
+### 📌 프로젝트 실행방법
+
+1. Clone the repo
+
+```javascript
+$ git clone https://github.com/wanted-pre-onboarding-12th-team-5/pre-onboarding-12th-2-5.git
+```
+
+2. Install npm packages & get start
+
+```javascript
+$ npm install
+$ npm start
+```
+
+<br />
+
+### 📌 기술 스택
+<div>
+  <img src="https://img.shields.io/badge/react-61DAFB?style=flat&logo=react&logoColor=white">
+  <img src="https://img.shields.io/badge/typescript-3178C6?style=flat&logo=typescript&logoColor=white">
+  <img src="https://img.shields.io/badge/styled components-DB7093?style=flat&logo=styledcomponents&logoColor=white">
+  <img src="https://img.shields.io/badge/axios-5A29E4?style=flat&logo=axios&logoColor=white">
+  <img src="https://img.shields.io/badge/react router-CA4245?style=flat&logo=react router&logoColor=white">
+</div>
+
+<br />
+
+### 📌 기능 구현
 
 1. 이슈 목록 화면
 - github API인 Octokit을 사용하여 이슈 목록을 불러옵니다.
 - 이슈 클릭시 해당 이슈번호('/issues/:id') 의 상세 페이지로 이동합니다.
 - issues 배열을 순회하면서, idx % 4 === 3 조건을 사용하여 4번째 이슈 아래에 광고 배너를 표시합니다. 
-- 인피니트 스크롤 기능은 아직 구현 중이라 완성하지 못했습니다.. (코드가 지저분한 상태)
+- 인피니트 스크롤 기능은 팀 과제 이후 배운 내용을 토대로 구현할 예정입니다. 
 
 
 2. 이슈 상세 화면
