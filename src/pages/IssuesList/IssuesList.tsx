@@ -1,5 +1,5 @@
 import { StyledIssuesList } from './IssuesList.styled';
-import img from "../images/optimize.webp";
+import img from "../../images/optimize.webp";
 import React, { useRef, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { Issue } from '../../IssuesType';
