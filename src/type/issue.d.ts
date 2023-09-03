@@ -4,11 +4,11 @@ export interface IssueType {
   html_url: string;
   created_at: string;
   state: string;
-  body?: string | null;
+  body?: string | null | undefined;
   title: string;
   comments: number;
   user: { 
     login: string,
     avatar_url: string
-  };
+  } | null;
 }
