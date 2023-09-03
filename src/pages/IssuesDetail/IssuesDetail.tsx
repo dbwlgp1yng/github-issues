@@ -5,6 +5,9 @@ import { getIssue } from '../../services/getIssues';
 import { IssueType } from '../../type/issue';
 import { useEffect, useState } from 'react';
 import Error from '../ErrorPage/Error';
+import SyntaxHighlighter from 'react-syntax-highlighter';
+import remarkGfm from 'remark-gfm';
+import { oneLight } from 'react-syntax-highlighter/dist/esm/styles/prism';
 
 export default function IssuesDetail( ){
   const { id = '' } = useParams<{ id?: string }>();
@@ -19,10 +22,6 @@ export default function IssuesDetail( ){
   if (!issueData) {
     return <Error />;
   }
-
-  const markdownContent = `
-    ${issueData?.body}
-  `;
   
   return (
     <StyledIssuesDetail>
@@ -41,8 +40,23 @@ export default function IssuesDetail( ){
           <p>{issueData?.comments} comments</p>
         </div>
       </section>
-      <ReactMarkdown className='markdown_box'>
-        {markdownContent}
+      <ReactMarkdown
+        className='markdown_box'
+        remarkPlugins={[remarkGfm]}
+        components={{
+          code({ inline, className, children, ...props }) {
+            const match = /language-(\w+)/.exec(className || '');
+            return !inline && match ? (
+              <SyntaxHighlighter language={match[1]} PreTag="div" {...props} style={oneLight}>
+                {String(children).replace(/\n$/, '')}
+              </SyntaxHighlighter>
+            ) : (
+              <code {...props}>{children}</code>
+            );
+          },
+        }}
+      >
+        {String(issueData?.body?.replace(/\n\s\n\s/gi, '\n\n&nbsp;\n\n'))}
       </ReactMarkdown>
     </StyledIssuesDetail>
   );
