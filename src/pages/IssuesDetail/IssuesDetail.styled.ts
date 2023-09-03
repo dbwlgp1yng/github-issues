@@ -43,3 +43,11 @@ export const StyledIssuesDetail = styled.div`
     }
   }
 `;
+
+export const StyledLoading = styled.div`
+  width: 60%;
+  margin: 0 auto;
+  text-align: center;
+  font-weight: bold;
+  font-size: 2rem;
+`;

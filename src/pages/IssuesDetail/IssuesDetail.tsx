@@ -1,6 +1,6 @@
 import { useParams } from 'react-router-dom';
 import ReactMarkdown from 'react-markdown';
-import { StyledIssuesDetail } from './IssuesDetail.styled';
+import { StyledIssuesDetail, StyledLoading } from './IssuesDetail.styled';
 import { getIssue } from '../../services/getIssues';
 import { IssueType } from '../../type/issue';
 import { useEffect, useState } from 'react';
@@ -20,7 +20,7 @@ export default function IssuesDetail( ){
   }, [id]);
 
   if (!issueData) {
-    return <Error />;
+    return <StyledLoading>Loading...</StyledLoading>;
   }
   
   return (
