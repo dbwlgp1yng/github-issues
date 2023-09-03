@@ -70,7 +70,7 @@ useEffect(() => {
     }
   }, [loading]);
 ```
-화면에서 ```target.current``` 가 존재하면 새로운 IntersectionObserver를 생성합니다.
+화면에서 ```target.current``` 가 존재하면 새로운 IntersectionObserver를 생성합니다. <br />
 IntersectionObserver는 화면에서 target.current 요소가 보이는지 감시하며, <br />
 화면에 요소가 보인다면 ```getMorePages``` 함수를 호출하여 새 데이터 페이지를 가져옵니다.
 
