@@ -1,42 +1,62 @@
 import { useParams } from 'react-router-dom';
-import { useIssuesContext } from '../../contexts/IssuesContext';
-import { Issue } from '../../IssuesType';
-import Error from '../ErrorPage/Error';
 import ReactMarkdown from 'react-markdown';
-import { StyledIssuesDetail } from './IssuesDetail.styled';
+import { StyledIssuesDetail, StyledLoading } from './IssuesDetail.styled';
+import { getIssue } from '../../services/getIssues';
+import { IssueType } from '../../type/issue';
+import { useEffect, useState } from 'react';
+import Error from '../ErrorPage/Error';
+import SyntaxHighlighter from 'react-syntax-highlighter';
+import remarkGfm from 'remark-gfm';
+import { oneLight } from 'react-syntax-highlighter/dist/esm/styles/prism';
 
 export default function IssuesDetail( ){
   const { id = '' } = useParams<{ id?: string }>();
-  const { issues }: any = useIssuesContext();
-  const issue = issues.find((issue: Issue) => issue.number === parseInt(id));
+  const [issueData, setIssueData] = useState<IssueType | null>(null);
 
-  if (!issue) {
-    return <Error />;
+  useEffect(() => {
+    getIssue(Number(id)).then((data) => {
+      setIssueData(data);
+    });
+  }, [id]);
+
+  if (!issueData) {
+    return <StyledLoading>Loading...</StyledLoading>;
   }
-
-  const markdownContent = `
-    ${issue.body}
-  `;
   
   return (
     <StyledIssuesDetail>
       <section>
         <div className='detail_title'>
-          <h2>{issue.title}</h2>
-          <span>#{issue.number}</span>
+          <h2>{issueData?.title}</h2>
+          <span>#{issueData?.number}</span>
         </div>
         <div className='detail_profile'>
           <img
-            src={issue.user.avatar_url}
-            alt={issue.user.login}
+            src={issueData?.user?.avatar_url}
+            alt={issueData?.user?.login}
           />
-          <p>{issue.user.login}</p>
-          <p>{issue.formattedDate}</p>
-          <p>{issue.comments} comments</p>
+          <p>{issueData?.user?.login}</p>
+          <p>{issueData?.created_at}</p>
+          <p>{issueData?.comments} comments</p>
         </div>
       </section>
-      <ReactMarkdown className='markdown_box'>
-        {markdownContent}
+      <ReactMarkdown
+        className='markdown_box'
+        remarkPlugins={[remarkGfm]}
+        components={{
+          code({ inline, className, children, ...props }) {
+            const match = /language-(\w+)/.exec(className || '');
+            return !inline && match ? (
+              <SyntaxHighlighter language={match[1]} PreTag="div" {...props} style={oneLight}>
+                {String(children).replace(/\n$/, '')}
+              </SyntaxHighlighter>
+            ) : (
+              <code {...props}>{children}</code>
+            );
+          },
+        }}
+      >
+        {String(issueData?.body?.replace(/\n\s\n\s/gi, '\n\n&nbsp;\n\n'))}
       </ReactMarkdown>
     </StyledIssuesDetail>
   );

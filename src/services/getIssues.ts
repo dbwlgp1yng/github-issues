@@ -21,14 +21,15 @@ export async function getIssues(page: number) {
 }
 
 export async function getIssue(id: number) {
-  const res = await octokit.request('GET /repos/{owner}/{repo}/issues?state=open&sort=comments', {
+  const res = await octokit.request('GET /repos/{owner}/{repo}/issues/{issue_number}', {
     owner: 'facebook',
     repo: 'react',
-    number: id,
+    issue_number: id,
   });
 
-  if (res.status !== 200) {
+  if (res.status === 200) {
+    return res.data;
+  } else {
     return null;
   }
-  return res.data;
 }

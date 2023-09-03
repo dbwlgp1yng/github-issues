@@ -1,15 +1,14 @@
 export interface IssueType {
+  id: number;
   number: number;
   html_url: string;
   created_at: string;
-  body?: string | null;
+  state: string;
+  body?: string | null | undefined;
   title: string;
   comments: number;
-  user: UserType | null;
-}
-
-export interface UserType {
-  avatar_url: string;
-  id: number;
-  login: string;
+  user: { 
+    login: string,
+    avatar_url: string
+  } | null;
 }

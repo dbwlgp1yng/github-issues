@@ -54,3 +54,12 @@ export const StyledIssuesList = styled.li`
     }
   }
 `;
+
+export const StyledLoading = styled.div`
+  width: 100%;
+  margin: 0 auto;
+  padding: 1rem 0;
+  color: darkblue;
+  text-align: center;
+  font-weight: bold;
+`;
