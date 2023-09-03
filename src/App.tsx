@@ -1,27 +1,16 @@
-import Header from "./components/Header";
-import { IssuesProvider } from './contexts/IssuesContext';
 import { Route, Routes } from 'react-router-dom';
 import IssuesList from './pages/IssuesList/IssuesList';
 import IssuesDetail from './pages/IssuesDetail/IssuesDetail';
-import Error from './pages/ErrorPage/Error';
-
-const IssuesRoutes = () => (
-  <Routes>
-    <Route path="/" element={<IssuesList />} />
-    <Route path="/issues/:id" element={<IssuesDetail />} />
-    <Route path="*" element={<Error />} /> 
-  </Routes>
-);
+import Layout from "./components/Layout/Layout";
 
 function App() {
-  const owner = 'facebook';
-  const repo = 'react';
-
   return (
-    <IssuesProvider>
-      <Header owner={owner} repo={repo}/>
-      <IssuesRoutes />
-    </IssuesProvider>
+      <Routes>
+        <Route path="/" element={<Layout />}>
+          <Route path="/" element={<IssuesList />} />
+          <Route path="/issues/:id" element={<IssuesDetail />} />
+        </Route>
+      </Routes>
   );
 }
 
