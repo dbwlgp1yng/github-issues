@@ -4,10 +4,10 @@ import { StyledIssuesDetail, StyledLoading } from './IssuesDetail.styled';
 import { getIssue } from '../../services/getIssues';
 import { IssueType } from '../../type/issue';
 import { useEffect, useState } from 'react';
-import Error from '../ErrorPage/Error';
 import SyntaxHighlighter from 'react-syntax-highlighter';
 import remarkGfm from 'remark-gfm';
 import { oneLight } from 'react-syntax-highlighter/dist/esm/styles/prism';
+import { formattedCreateAt } from '../../utils/formattedDate';
 
 export default function IssuesDetail( ){
   const { id = '' } = useParams<{ id?: string }>();
@@ -36,7 +36,7 @@ export default function IssuesDetail( ){
             alt={issueData?.user?.login}
           />
           <p>{issueData?.user?.login}</p>
-          <p>{issueData?.created_at}</p>
+          <p>{formattedCreateAt(issueData?.created_at)}</p>
           <p>{issueData?.comments} comments</p>
         </div>
       </section>
