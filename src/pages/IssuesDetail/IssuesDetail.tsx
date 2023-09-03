@@ -16,7 +16,7 @@ export default function IssuesDetail( ){
     });
   }, [id]);
 
-  if (!id) {
+  if (!issueData) {
     return <Error />;
   }
 

@@ -21,14 +21,20 @@ export async function getIssues(page: number) {
 }
 
 export async function getIssue(id: number) {
-  const res = await octokit.request('GET /repos/{owner}/{repo}/issues/{issue_number}', {
-    owner: 'facebook',
-    repo: 'react',
-    issue_number: id,
-  });
+  try {
+    const res = await octokit.request('GET /repos/{owner}/{repo}/issues/{issue_number}', {
+      owner: 'facebook',
+      repo: 'react',
+      issue_number: id,
+    });
 
-  if (res.status !== 200) {
+    if (res.status === 200) {
+      return res.data;
+    } else {
+      return null;
+    }
+  } catch (error) {
+    console.error('에러 발생:', error);
     return null;
   }
-  return res.data;
 }
