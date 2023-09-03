@@ -1,5 +1,5 @@
 import { StyledError } from "./Error.styled";
-import errorImage from "../images/error.jpg"; 
+import errorImage from "../../images/error.jpg"; 
 
 export default function Error( ){
   return (

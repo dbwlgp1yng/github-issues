@@ -9,9 +9,11 @@ export const StyledHeader = styled.header`
   font-size: 1.5rem;
   font-weight: bold;
 
-  div {
+  .header_wrap {
     display: flex;
     align-items: center;
+    text-decoration: none;
+    color: #000;
     cursor: pointer;
     .github_icon {
       width: 2.5rem;
