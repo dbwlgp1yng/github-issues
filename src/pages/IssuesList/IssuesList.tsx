@@ -5,6 +5,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { BiCommentDetail } from 'react-icons/bi';
 import { IssueType } from '../../type/issue';
 import { getIssues } from '../../services/getIssues';
+import { formattedCreateAt } from '../../utils/formattedDate';
 
 export default function IssuesList() {
   const [issueList, setIssueList] = useState<IssueType[]>([]);
@@ -56,7 +57,7 @@ export default function IssuesList() {
                 <div className='list_info'>
                   <span>#{issue.number}</span>
                   <span>{issue.state}</span>
-                  <span>{issue.created_at}</span>
+                  <span>{formattedCreateAt(issue.created_at)}</span>
                   <span>by {issue.user?.login}</span>
                 </div>
               </div>
