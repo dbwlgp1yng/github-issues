@@ -33,7 +33,7 @@ export default function IssuesList() {
                   <span>#{issue.number}</span>
                   <span>{issue.state}</span>
                   <span>{issue.created_at}</span>
-                  <span>by {issue.user.login}</span>
+                  <span>by {issue.user?.login}</span>
                 </div>
               </div>
               <div className='comment'>
